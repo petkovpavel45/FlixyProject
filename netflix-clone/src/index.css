@@ -25,4 +25,6 @@
 
 body {
     font-family: 'Nsans Regular', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: black;
+    color: white;
 }

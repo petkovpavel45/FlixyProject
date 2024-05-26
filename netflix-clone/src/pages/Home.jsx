@@ -1,10 +1,20 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React from "react";
+import Hero from "../components/Hero";
+import MovieRow from "../components/MovieRow";
+import endpoints from "../services/movieServices";
 
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <>
+      <Hero />
+      <MovieRow title="upcoming" url={endpoints.upcoming} />
+      <MovieRow title="trending" url={endpoints.trending} />
+      <MovieRow title="top rated" url={endpoints.topRated} />
+      <MovieRow title='comedy' url={endpoints.comedy}/>
+      <MovieRow title='popular' url={endpoints.popular}/>
+    </>
+  );
+};
 
-export default Home
+export default Home;
