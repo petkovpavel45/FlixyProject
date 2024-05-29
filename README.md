@@ -1,1 +1,1 @@
-https://react-netflix-cloned.web.app/
+https://reacty-flix.web.app/
