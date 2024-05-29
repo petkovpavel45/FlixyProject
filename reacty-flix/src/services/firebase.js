@@ -12,6 +12,7 @@ const {
   VITE_FIREBASE_APP_ID,
 } = import.meta.env;
 
+
 const firebaseConfig = {
   apiKey: VITE_FIREBASE_API_KEY,
   authDomain: VITE_FIREBASE_AUTH_DOMAIN,
@@ -21,6 +22,7 @@ const firebaseConfig = {
   appId: VITE_FIREBASE_APP_ID,
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app)
