@@ -1,13 +1,24 @@
+/* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
 const Login = () => {
   const [rememberLogin, setRememberLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleFormSubmit = (e) => {
+  const { user, login } = UserAuth();
+  const navigate = useNavigate();
+
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await login(email, password);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <>
@@ -60,9 +71,7 @@ const Login = () => {
                   <p>Need Help?</p>
                 </div>
                 <p className="my-4">
-                  <span className="text-gray-600 mr-2">
-                    New to Netflix?
-                  </span>
+                  <span className="text-gray-600 mr-2">New to Netflix?</span>
                   <Link to="/signup">Sign Up</Link>
                 </p>
               </form>
