@@ -71,7 +71,7 @@ const Login = () => {
                   <p>Need Help?</p>
                 </div>
                 <p className="my-4">
-                  <span className="text-gray-600 mr-2">New to Netflix?</span>
+                  <span className="text-gray-600 mr-2">New to Flixy?</span>
                   <Link to="/signup">Sign Up</Link>
                 </p>
               </form>
