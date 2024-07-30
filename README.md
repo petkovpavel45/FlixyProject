@@ -41,22 +41,23 @@ To get a local copy of this project up and running on your machine, follow these
  
 ### Installation
  
-1. Clone the repo
-   ```sh
+1.	Clone the repo
+```sh
    git clone https://github.com/petkovpavel45/FlixyProject
 ```
 
 2.	Install NPM packages
-   ```sh
+```sh
     cd flixy-reacty
     npm install
 ```
 ### Usage
-	1.	Start the development server
-   ```sh
+
+1.	Start the development server
+```sh
     npm start
 ```
-	2.	Open http://localhost:3000 to view it in the browser.
+2.	Open http://localhost:3000 to view it in the browser.
 
 ### Contributing
 
