@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import flixyprofilebg from "../assets/flixyprofilebg.jpg"
 import React, { useEffect, useState } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
@@ -38,8 +39,8 @@ const Profile = () => {
         <div>
           <img
             className="block w-full h-[500px] object-cover"
-            src="https://assets.nflxext.com/ffe/siteui/vlv3/a99688ca-33c3-4099-9baa-07a2e2acb398/42f152b5-6bde-426f-8d7a-090f3a1803eb/BG-en-20240520-popsignuptwoweeks-perspective_alpha_website_small.jpg"
-            alt="//"
+            src={flixyprofilebg}
+            alt="flixyprofile background"
           />
           <div className="bg-black/60 fixed top-0 left-0 w-full h-[500px]" />
           <div className="absolute top-[20%] p-4 md:p-8">
