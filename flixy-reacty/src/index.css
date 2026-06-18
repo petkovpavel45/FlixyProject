@@ -28,3 +28,80 @@ body {
     background-color: black;
     color: white;
 }
+
+/* ── Flixy Intro Animation ── */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: intro-fade-out 2.8s ease forwards;
+}
+
+.intro-text-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.intro-dark {
+  font-family: 'Nsans Bold', sans-serif;
+  font-size: clamp(80px, 15vw, 180px);
+  letter-spacing: 0.12em;
+  display: block;
+  color: #3d0000;
+  user-select: none;
+}
+
+.intro-bright {
+  position: absolute;
+  inset: 0;
+  font-family: 'Nsans Bold', sans-serif;
+  font-size: clamp(80px, 15vw, 180px);
+  letter-spacing: 0.12em;
+  color: #e50914;
+  text-shadow: 0 0 70px rgba(229, 9, 20, 0.55);
+  animation: intro-sweep 2.8s ease forwards;
+  user-select: none;
+}
+
+.intro-line {
+  position: absolute;
+  top: -10%;
+  width: 4px;
+  height: 120%;
+  background: linear-gradient(to bottom, transparent, rgba(255, 160, 160, 0.95), transparent);
+  animation: intro-line-move 2.8s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes intro-sweep {
+  0%   { clip-path: inset(0 100% 0 0); opacity: 1; transform: scale(1); }
+  55%  { clip-path: inset(0 0% 0 0);   opacity: 1; transform: scale(1); }
+  78%  { clip-path: inset(0 0% 0 0);   opacity: 1; transform: scale(1.06); }
+  100% { clip-path: inset(0 0% 0 0);   opacity: 0; transform: scale(1.1); }
+}
+
+@keyframes intro-fade-out {
+  0%, 72% { opacity: 1; }
+  100%    { opacity: 0; pointer-events: none; }
+}
+
+@keyframes intro-line-move {
+  0%   { left: 0%;   opacity: 0; }
+  4%   { opacity: 1; }
+  55%  { left: 100%; opacity: 0; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* ── Toast Notification ── */
+@keyframes toast-in {
+  from { transform: translateX(110%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+.toast-item {
+  animation: toast-in 0.35s ease forwards;
+}

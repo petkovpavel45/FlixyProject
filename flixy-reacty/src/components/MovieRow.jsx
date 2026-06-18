@@ -1,41 +1,53 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MovieItem from "./MovieItem";
+import MovieSkeleton from "./MovieSkeleton";
 import { MdChevronRight, MdChevronLeft } from "react-icons/md";
-const MovieRow = ({ title, url }) => {
-  const rowId = Math.floor(Math.random() * 1000)
+
+const MovieRow = ({ title, url, onMovieClick }) => {
+  const rowId = useRef(`row-${Math.random().toString(36).slice(2)}`).current;
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    axios.get(url).then((response) => setMovies(response.data.results));
+    setLoading(true);
+    axios.get(url).then((response) => {
+      setMovies(response.data.results);
+      setLoading(false);
+    });
   }, [url]);
 
   const slide = (offset) => {
-    const slider = document.getElementById("slider" + rowId);
-    slider.scrollLeft = slider.scrollLeft + offset;
+    const slider = document.getElementById(rowId);
+    if (slider) slider.scrollLeft += offset;
   };
+
   return (
     <>
       <h2 className="font-nsans-bold md:text-xl p-4 capitalize">{title}</h2>
-      <div className="relative flex items-center group">
+      <div className="relative flex items-center group/row">
         <MdChevronLeft
-        onClick={() => slide(-500)}
+          onClick={() => slide(-500)}
           size={40}
-          className="bg-white rounded-full absolute left-2 opacity-80 text-gray-700 z-10 hidden group-hover:block cursor-pointer"
+          className="bg-white rounded-full absolute left-2 opacity-80 text-gray-700 z-10 hidden group-hover/row:block cursor-pointer"
         />
         <div
-          id={`slider` + rowId}
+          id={rowId}
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide"
         >
-          {movies.map((movie) => (
-            <MovieItem key={movie.id} movie={movie} />
-          ))}
+          {loading
+            ? Array(8)
+                .fill(0)
+                .map((_, i) => <MovieSkeleton key={i} />)
+            : movies.map((movie) => (
+                <MovieItem key={movie.id} movie={movie} onMovieClick={onMovieClick} />
+              ))}
         </div>
         <MdChevronRight
-        onClick={() => slide(500)}
+          onClick={() => slide(500)}
           size={40}
-          className="bg-white rounded-full absolute right-2 opacity-80 text-gray-700 z-10 hidden group-hover:block cursor-pointer"
+          className="bg-white rounded-full absolute right-2 opacity-80 text-gray-700 z-10 hidden group-hover/row:block cursor-pointer"
         />
       </div>
     </>
